@@ -1,0 +1,57 @@
+class Employee():
+    def __init__(self,name,salary,phone):
+        self.__name = name
+        self.__base_salary = salary
+        self.__phone_number = phone
+    def access_name(self):
+        return self.__name
+    def access_number(self):
+        return self.__phone_number
+    def mutator(self,end_salary):
+        self.__base_salary=end_salary
+    def salary_total(self):  
+       return self.__base_salary;
+    def __str__(self):
+        return "Employee({}), {}, {}".format(self.__name,self.__phone_number,self.salary_total())
+    def __repr__(self):
+        return self.__str__
+    
+        
+class Manager(Employee):
+    def __init__(self, name, salary, phone,bonus):
+        super().__init__(name,salary,phone)
+        self.__bonus=bonus
+    def salary_total(self):
+        return super().salary_total()+self.__bonus
+    
+        
+class Engineer(Employee):
+    def __init__(self,name,salary,phone):
+        super().__init__(name,salary,phone)
+        
+        
+class CEO(Manager):
+    def __init__(self,name,base_salary,phone,bonus,stock):
+        super().__init__(name,base_salary,phone,bonus)
+        self.__stock_options=stock
+    def salary_total(self):
+        return super().salary_total()+self.__stock_options
+    
+
+def print_staff(staff):
+    for i in staff:
+        print(i)
+        
+        
+def main():
+   employee = Employee("Kim Peart", 50000, "954-632-8307");
+   engineer = Engineer("Ella Fitzgerald", 100000, "561-908-4598");
+   manager = Manager("Tiffany Calame", 200000, "561-543-9023", 50000);
+   ceo = CEO("Ally Bean", 80000, "754-927-5385", 5400, 700);
+              
+   result = [employee, engineer, manager, ceo];
+
+   print_staff(result);
+   
+main()
+    
